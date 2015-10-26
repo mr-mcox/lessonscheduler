@@ -1,0 +1,7 @@
+v0.1:
+  ☐ Create directory structure
+  ☐ Create new student model
+  ☐ Update student
+  ☐ Controller/view for creation of student
+  ☐ Controller/view for edit of student
+  ☐ Deploy to heroku
