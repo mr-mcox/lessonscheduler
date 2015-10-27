@@ -1,5 +1,5 @@
 v0.1:
-  ☐ Create directory structure
+  ✔ Create directory structure @done (15-10-26 19:12)
   ☐ Create new student model
   ☐ Update student
   ☐ Controller/view for creation of student

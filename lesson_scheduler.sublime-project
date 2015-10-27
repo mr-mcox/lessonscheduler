@@ -10,7 +10,8 @@
 		{
 			"cmd":
 			[
-				"py.test"
+				"venv/bin/py.test",
+				"tests/"
 			],
 			"env":
 			{

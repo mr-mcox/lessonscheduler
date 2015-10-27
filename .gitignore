@@ -1,7 +1,6 @@
 *.sublime-workspace
 *.pyc
 .cache/*
-bin/*
-include/*
-lib/*
+venv/*
 .DS_Store
+*.sqlite
