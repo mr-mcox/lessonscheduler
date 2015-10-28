@@ -5,7 +5,6 @@ import pytest
 
 @pytest.fixture()
 def app():
-    print("Created app")
     return create_app('testing')
 
 
@@ -18,7 +17,6 @@ def app_context(request, app):
         app_context.pop()
 
     request.addfinalizer(reset_context)
-    print("Created context")
     return app_context
 
 
@@ -32,6 +30,9 @@ def reset_db():
     db.session.remove()
     db.drop_all()
 
+@pytest.fixture(scope='session')
+def client():
+    return current_app.test_client(use_cookies=True)
 
 def test_app_exists():
     assert current_app is not None
@@ -39,3 +40,7 @@ def test_app_exists():
 
 def test_app_is_testing():
     assert current_app.config['TESTING']
+
+def test_get_index(client):
+    resp = client.get('/', content_type='html/text')
+    assert resp.status_code == 200

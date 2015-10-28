@@ -1,7 +1,7 @@
 v0.1:
   ✔ Create directory structure @done (15-10-26 19:12)
-  ☐ Create new student model
-  ☐ Update student
-  ☐ Controller/view for creation of student
-  ☐ Controller/view for edit of student
-  ☐ Deploy to heroku
+ ✔ Create index @done (15-10-27 20:25)
+ ☐ Create student
+ ☐ View all students
+ ☐ Edit students
+ ☐ Deploy to heroku
