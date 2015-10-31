@@ -1,7 +1,9 @@
 v0.1:
   ✔ Create directory structure @done (15-10-26 19:12)
  ✔ Create index @done (15-10-27 20:25)
- ☐ Create student
- ☐ View all students
- ☐ Edit students
+ ✔ Create all students view that new student redirects to @done (15-10-31 17:52)
+ ✔ Create new student button on all students view @done (15-10-31 17:54)
+ ✔ Create navigation bar @done (15-10-31 18:06)
+ ✔ Create new student form that doesn't look crappy @done (15-10-31 17:52)
+ ✔ Edit student form prefills with student name @done (15-10-31 18:12)
  ☐ Deploy to heroku

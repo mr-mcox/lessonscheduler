@@ -8,12 +8,15 @@ app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
 migrate = Migrate(app, db)
 
+# def start_server():
+#      app.run(debug=True)
+
 
 def make_shell_context():
     return dict(app=app, db=db)
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
-manager.add_command('serve', app.run())
+# manager.add_command('serve', start_server)
 
 if __name__ == '__main__':
     manager.run()
