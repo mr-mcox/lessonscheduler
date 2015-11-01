@@ -15,7 +15,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+        'postgresql://flask:fa1c0n@localhost/lessonscheduler-dev'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 

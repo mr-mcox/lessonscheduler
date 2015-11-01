@@ -1,4 +1,4 @@
-from ..models import Student
+from ..models import Student, Grade
 from . import main
 from flask import render_template, url_for, flash, redirect
 from .. import db
@@ -11,6 +11,7 @@ def new_student():
     if form.validate_on_submit():
         student = Student()
         student.name = form.name.data
+        student.grade = Grade.query.get(form.grade.data)
         db.session.add(student)
         db.session.commit()
         return redirect(url_for('.students'))
@@ -29,6 +30,7 @@ def edit_student(id):
     form = StudentForm(name=student.name)
     if form.validate_on_submit():
         student.name = form.name.data
+        student.grade = Grade.query.get(form.grade.data)
         db.session.add(student)
         flash('The student has been updated.')
         return redirect(url_for('.students'))
