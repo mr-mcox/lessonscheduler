@@ -22,6 +22,7 @@ class TestingConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
         'postgresql://flask:fa1c0n@localhost/lessonscheduler-test'
+    WTF_CSRF_ENABLED = False
 
 
 class ProductionConfig(Config):

@@ -3,7 +3,7 @@ from . import main
 from flask import render_template, jsonify, request, url_for, flash, redirect
 from .. import db
 from .forms import StudentForm
-
+import pdb
 
 @main.route('/student/', methods=['GET', 'POST'])
 def new_student():
