@@ -1,9 +1,21 @@
-v0.1:
-  ✔ Create directory structure @done (15-10-26 19:12)
- ✔ Create index @done (15-10-27 20:25)
- ✔ Create all students view that new student redirects to @done (15-10-31 17:52)
- ✔ Create new student button on all students view @done (15-10-31 17:54)
- ✔ Create navigation bar @done (15-10-31 18:06)
- ✔ Create new student form that doesn't look crappy @done (15-10-31 17:52)
- ✔ Edit student form prefills with student name @done (15-10-31 18:12)
- ✔ Deploy to heroku @done (15-10-31 20:08)
+S5:
+ ☐ Create grades
+ ☐ Assign student grade
+ ☐ Create and edit subjects
+ ☐ Create and edit period number, start and end time
+ ☐ Create and edit teachers
+ ☐ Create class by assigning teacher, period, subject, grade and adding room/notes
+ ☐ Create and edit schedule days (A/B)
+ ☐ Create student schedule by assigning them classes for each period and schedule day based on classes available for that grade and period
+ ☐ View student schedule
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ Deploy to heroku @done (15-10-31 20:08) @project(v0.1)
+ ✔ Edit student form prefills with student name @done (15-10-31 18:12) @project(v0.1)
+ ✔ Create navigation bar @done (15-10-31 18:06) @project(v0.1)
+ ✔ Create new student button on all students view @done (15-10-31 17:54) @project(v0.1)
+ ✔ Create new student form that doesn't look crappy @done (15-10-31 17:52) @project(v0.1)
+ ✔ Create all students view that new student redirects to @done (15-10-31 17:52) @project(v0.1)
+ ✔ Create index @done (15-10-27 20:25) @project(v0.1)
+ ✔ Create directory structure @done (15-10-26 19:12) @project(v0.1)

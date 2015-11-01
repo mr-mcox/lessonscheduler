@@ -1,9 +1,7 @@
 from flask import url_for
 from app import db
 import pytest
-import json
 from app.models import Student
-from app.main.forms import StudentForm
 
 
 @pytest.fixture(autouse=True)
@@ -13,19 +11,6 @@ def setup_db(request, app):
         db.drop_all()
     request.addfinalizer(reset_db)
     db.create_all()
-
-
-def test_app_exists(app):
-    assert app is not None
-
-
-def test_app_is_testing(app):
-    assert app.config['TESTING']
-
-
-def test_get_index(client, app):
-    resp = client.get(url_for('main.index'), content_type='html/text')
-    assert resp.status_code == 200
 
 
 def test_create_new_student(client, app, monkeypatch):
