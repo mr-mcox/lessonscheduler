@@ -17,12 +17,6 @@ def new_student():
     return render_template('student_form.html', form=form)
 
 
-# @main.route('/students/<int:id>')
-# def get_student():
-#     student = Student.query.get_or_404(id)
-#     return jsonify(student.to_json())
-
-
 @main.route('/students/')
 def students():
     students = Student.query.all()
