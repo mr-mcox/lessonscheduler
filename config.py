@@ -5,6 +5,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    ALEMBIC_CONFIG = os.path.join(basedir, 'migrations', 'alembic.ini')
+    ALEMBIC_BASE_DIR = os.path.join(basedir, 'migrations')
     # SERVER_NAME = 'myserver:5000'
 
     @staticmethod

@@ -1,19 +1,8 @@
 from flask import url_for
-from app import db
-import pytest
 from app.models import Grade
 
 
-@pytest.fixture(autouse=True)
-def setup_db(request, app):
-    def reset_db():
-        db.session.remove()
-        db.drop_all()
-        db.create_all()
-    request.addfinalizer(reset_db)
-
-
-def test_create_new_grade(client, app, monkeypatch):
+def test_create_new_grade(client, app):
     grade = '6th'
     resp = client.post(url_for('main.new_grade'),
                        data={'grade': grade},

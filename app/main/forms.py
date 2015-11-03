@@ -18,3 +18,7 @@ class StudentForm(Form):
 class GradeForm(Form):
     grade = StringField('Grade', validators=[Required()])
     submit = SubmitField('Add/Modify')
+
+class SubjectForm(Form):
+    name = StringField('Subject', validators=[Required()])
+    submit = SubmitField('Add/Modify')
