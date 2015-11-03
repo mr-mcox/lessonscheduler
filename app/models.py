@@ -45,3 +45,19 @@ class ScheduleDay(db.Model):
 
     def __repr__(self):
         return '<Schedule Day %r>' % self.name
+
+class Period(db.Model):
+    __tablename__ = 'periods'
+    id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer, unique=True)
+    start_time = db.Column(db.Time)
+    end_time = db.Column(db.Time)
+
+    def __repr__(self):
+        return '<Period %r>' % self.number
+
+    def start_time_as_str(self):
+        return self.start_time.strftime('%I:%M %p')
+
+    def end_time_as_str(self):
+        return self.end_time.strftime('%I:%M %p')

@@ -1,6 +1,7 @@
 from flask.ext.wtf import Form
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
-    SubmitField
+    SubmitField, IntegerField
+from wtforms_components import TimeField
 from wtforms.validators import Required
 from app.models import Grade
 
@@ -32,4 +33,10 @@ class TeacherForm(Form):
 
 class ScheduleDayForm(Form):
     name = StringField('Teacher', validators=[Required()])
+    submit = SubmitField('Add/Modify')
+
+class PeriodForm(Form):
+    number = IntegerField('Number', validators=[Required()])
+    start_time = TimeField('Start Time', validators=[Required()])
+    end_time = TimeField('End Time', validators=[Required()])
     submit = SubmitField('Add/Modify')
