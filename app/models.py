@@ -29,3 +29,11 @@ class Subject(db.Model):
 
     def __repr__(self):
         return '<Subject %r>' % self.name
+
+class Teacher(db.Model):
+    __tablename__ = 'teacher'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), unique=True)
+
+    def __repr__(self):
+        return '<Teacher %r>' % self.name

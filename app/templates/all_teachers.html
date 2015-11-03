@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}All Teachers{% endblock %}
+
+{% block page_content %}
+<h2>All teachers</h2>
+<a class="btn btn-default" href="{{ url_for('.new_teacher') }}">New Teacher</a>
+<table class="table table-hover followers">
+	<thead><tr><th>Teacher</th></tr></thead>
+	{% for teacher in teachers %}
+	<tr>
+		<td>
+			<a href="{{ url_for('.edit_teacher', id = teacher.id )}}">{{ teacher.name }}</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
