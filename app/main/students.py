@@ -34,4 +34,5 @@ def edit_student(id):
         db.session.add(student)
         flash('The student has been updated.')
         return redirect(url_for('.students'))
+    form.grade.data = student.grade.id
     return render_template('student_form.html', form=form, student=student)
