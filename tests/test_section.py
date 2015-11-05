@@ -1,7 +1,6 @@
 from flask import url_for
 from app.models import Teacher, Grade, Period, Subject, Section
 from datetime import time
-# from app import db
 
 
 def test_create_new_teacher(client, app, db):

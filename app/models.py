@@ -1,10 +1,12 @@
 from . import db
+from sqlalchemy.ext.associationproxy import association_proxy
 
 class Student(db.Model):
     __tablename__ = 'students'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True)
     grade_id = db.Column(db.Integer, db.ForeignKey('grades.id'))
+    sections = association_proxy('schedules', 'sections')
 
     def __repr__(self):
         return '<Student %r>' % self.name
@@ -75,6 +77,17 @@ class Section(db.Model):
     subject_id = db.Column(db.Integer, db.ForeignKey('subjects.id'))
     teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'))
     note = db.Column(db.String(128))
+    students = association_proxy('schedules', 'students')
 
     def __repr__(self):
         return '<Section %r>' % self.name
+
+class Schedule(db.Model):
+    __tablename__ = 'schedules'
+    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), primary_key=True)
+    section_id = db.Column(db.Integer, db.ForeignKey('sections.id'), primary_key=True)
+    schedule_day_id = db.Column(db.Integer, db.ForeignKey('schedule_days.id'), primary_key=True, index=True)
+    student = db.relationship("Student", backref="schedule")
+    section = db.relationship("Section", backref="schedule")
+    schedule_day = db.relationship("ScheduleDay", backref="schedule")
+    period = db.relationship("Period", secondary='sections')
