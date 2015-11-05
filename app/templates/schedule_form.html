@@ -3,18 +3,26 @@
 {% block title %}Assign Schedule{% endblock %}
 
 {% block page_content %}
-<div class="comment-form">
-    <form method="POST">
-    	<table>
-    		<thead><tr><th>Day A</th></tr></thead>
-    		{% for period in periods %}
-    		<tr>    	
-    			<td>{{ form.student() }}</td>
-    			<td>{{ form.section() }}</td>
-    		</tr>
-    		{% endfor %}
-    	</table>
-    	<button type="submit" class="btn btn-default">Submit</button>
-    </form>
-</div>
+<form method="POST">
+    {{ form.csrf_token }}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2"><h3>Period</h3></div>
+            {% for sd in schedule_day_list %}
+                <div class="col-md-2"><h3 class="text-center">{{ sd.name }}</h3></div>
+            {% endfor %}
+        </div>
+        {% for period in form.periods %}
+        <div class="row">
+            <div class="col-md-2"><h4>{{ period.period_num }}</h4></div>
+            {% for schedule_day in period.schedule_days %}
+                {{ schedule_day.student() }}
+                {{ schedule_day.schedule_day() }}
+                <div class="col-md-2">{{ schedule_day.section() }}</div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+	<button type="submit" class="btn btn-default">Submit</button>
+</form>
 {% endblock %}

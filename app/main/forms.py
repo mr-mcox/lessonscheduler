@@ -1,6 +1,7 @@
 from flask.ext.wtf import Form
+from wtforms import Form as NoCsrfForm
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
-    SubmitField, IntegerField, HiddenField
+    SubmitField, IntegerField, HiddenField, FieldList, FormField
 from wtforms_components import TimeField
 from wtforms.validators import Required
 from app.models import Grade, Subject, Period, Teacher, Section
@@ -35,11 +36,13 @@ class ScheduleDayForm(Form):
     name = StringField('Schedule Day', validators=[Required()])
     submit = SubmitField('Add/Modify')
 
+
 class PeriodForm(Form):
     number = IntegerField('Number', validators=[Required()])
     start_time = TimeField('Start Time', validators=[Required()])
     end_time = TimeField('End Time', validators=[Required()])
     submit = SubmitField('Add/Modify')
+
 
 class SectionForm(Form):
     name = StringField('Section Name', validators=[Required()])
@@ -57,12 +60,23 @@ class SectionForm(Form):
         self.teacher.choices = [(x.id, x.name) for x in Teacher.query.all()]
         self.period.choices = [(x.id, x.number) for x in Period.query.all()]
 
-class ScheduleForm(Form):
+
+class ScheduleFormItem(NoCsrfForm):
     student = HiddenField()
     schedule_day = HiddenField()
-    section = SelectField("Section", validators=[Required()])
+    section = SelectField("Section", coerce=int)
+    
+    def __init__(self, *args, **kwargs):
+        super(ScheduleFormItem, self).__init__(*args, **kwargs)
+        self.section.choices = [ (s.id, s.name) for s in Section.query.all()]
+        # self.section.choices = [ Section.query.all()]
+        print(self.section.choices)
 
-    def __init__(self, student, *args, **kwargs):
-        super(ScheduleForm, self).__init__(*args, **kwargs)
-        self.section.choices = [(x.id, x.name) for x in Section.query.all()]
-        student.data = student.id
+
+class SchedulePeriodGroup(NoCsrfForm):
+    schedule_days = FieldList(FormField(ScheduleFormItem))
+    period_num = None
+
+
+class ScheduleForm(Form):
+    periods = FieldList(FormField(SchedulePeriodGroup))
