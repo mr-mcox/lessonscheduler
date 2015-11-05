@@ -29,6 +29,7 @@ def edit_grade(id):
     if form.validate_on_submit():
         grade.grade = form.grade.data
         db.session.add(grade)
+        db.session.commit()
         flash('The grade has been updated.')
         return redirect(url_for('.grades'))
     return render_template('grade_form.html', form=form, grade=grade)

@@ -30,6 +30,7 @@ def edit_schedule_day(id):
     if form.validate_on_submit():
         schedule_day.name = form.name.data
         db.session.add(schedule_day)
+        db.session.commit()
         flash('The schedule_day has been updated.')
         return redirect(url_for('.schedule_days'))
     return render_template('schedule_day_form.html', form=form, schedule_day=schedule_day)

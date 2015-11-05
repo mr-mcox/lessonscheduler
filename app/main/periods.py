@@ -37,6 +37,7 @@ def edit_period(id):
         period.start_time = form.start_time.data
         period.end_time = form.end_time.data
         db.session.add(period)
+        db.session.commit()
         flash('The period has been updated.')
         return redirect(url_for('.periods'))
     return render_template('period_form.html', form=form, period=period)

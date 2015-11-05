@@ -32,6 +32,7 @@ def edit_student(id):
         student.name = form.name.data
         student.grade = Grade.query.get(form.grade.data)
         db.session.add(student)
+        db.session.commit()
         flash('The student has been updated.')
         return redirect(url_for('.students'))
     form.grade.data = student.grade.id

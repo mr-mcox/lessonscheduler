@@ -30,6 +30,7 @@ def edit_subject(id):
     if form.validate_on_submit():
         subject.name = form.name.data
         db.session.add(subject)
+        db.session.commit()
         flash('The subject has been updated.')
         return redirect(url_for('.subjects'))
     return render_template('subject_form.html', form=form, subject=subject)

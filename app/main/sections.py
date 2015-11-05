@@ -40,6 +40,7 @@ def edit_section(id):
         section.period = Period.query.get(form.period.data)
         section.note = form.note.data
         db.session.add(section)
+        db.session.commit()
         flash('The section has been updated.')
         return redirect(url_for('.sections'))
     form.grade.data = section.grade.id

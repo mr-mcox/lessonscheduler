@@ -30,6 +30,7 @@ def edit_teacher(id):
     if form.validate_on_submit():
         teacher.name = form.name.data
         db.session.add(teacher)
+        db.session.commit()
         flash('The teacher has been updated.')
         return redirect(url_for('.teachers'))
     return render_template('teacher_form.html', form=form, teacher=teacher)
