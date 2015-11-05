@@ -37,16 +37,23 @@ def edit_schedule(student_id):
             form.periods[i].schedule_days[j].schedule_day.data = schedule_day.id
     return render_template('schedule_form.html', form=form, schedule_day_list=schedule_day_list)
 
-
-
 @main.route('/schedule/<int:student_id>', methods=['POST'])
 def edit_schedule_post(student_id):
     form = ScheduleForm()
     student = Student.query.get_or_404(student_id)
 
     if form.validate_on_submit():
-        print("Choice for period 1, schedule day 1 is " + str(form.periods[0].schedule_days[0].section.data))
-        print("Student for period 1, schedule day 1 is " + str(form.periods[0].schedule_days[0].student.data))
-        print("Schedule Day for period 1, schedule day 1 is " + str(form.periods[0].schedule_days[0].schedule_day.data))
+        for preriod_obj in form.periods:
+            period = Period.query.get_or_404(preriod_obj.period_num.data)
+            for sched_obj in preriod_obj.schedule_days:
+                student = Student.query.get_or_404(sched_obj.student.data)
+                section = Section.query.get_or_404(sched_obj.section.data)
+                schedule_day = ScheduleDay.query.get_or_404(sched_obj.schedule_day.data)
+
+                Schedule().store_schedule(
+                    student=student,
+                    section=section,
+                    schedule_day=schedule_day,
+                    )
         return redirect(url_for('.students'))
     return render_template('schedule_form.html', form=form, schedule_day_list=schedule_day_list)

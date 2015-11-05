@@ -10,9 +10,17 @@ S5:
  ✔ Verify that one can query to identify class for given student, period and schedule day @done (15-11-04 19:11)
  ✔ Clean up the dang code so that it only does what it needs to in order to create a row per period @done (15-11-05 06:37)
  ✔ Create a form for each schedule day @done (15-11-05 07:22)
- ☐ Have it read the entries that you make and enter them
- ☐ Editing schedule results in old class assigned for student, period, schedule day being removed from association
+ ✔ Setting default values in selection form @done (15-11-05 11:14)
+ ✔ Save entries (use test) @done (15-11-05 12:59)
+ ✔ Editing schedule results in old class assigned for student, period, schedule day being removed from association @done (15-11-05 16:48)
+ ✔ Don't add a new schedule if it matches @done (15-11-05 16:52)
+ ☐ Editing schedule defaults to current data
  ☐ View student schedule
+ ☐ There are lesson days
+ ☐ Students have lesson days
+ ☐ Most mmodels output in alphebetical order
+ ☐ Sections output in order of Grade, Schedule Day, Period, Teacher
+ ☐ You can select CM by lesson day
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

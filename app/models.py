@@ -1,6 +1,7 @@
 from . import db
 from sqlalchemy.ext.associationproxy import association_proxy
 
+
 class Student(db.Model):
     __tablename__ = 'students'
     id = db.Column(db.Integer, primary_key=True)
@@ -25,6 +26,7 @@ class Grade(db.Model):
     def __repr__(self):
         return '<Grade %r>' % self.grade
 
+
 class Subject(db.Model):
     __tablename__ = 'subjects'
     id = db.Column(db.Integer, primary_key=True)
@@ -33,6 +35,7 @@ class Subject(db.Model):
 
     def __repr__(self):
         return '<Subject %r>' % self.name
+
 
 class Teacher(db.Model):
     __tablename__ = 'teachers'
@@ -43,6 +46,7 @@ class Teacher(db.Model):
     def __repr__(self):
         return '<Teacher %r>' % self.name
 
+
 class ScheduleDay(db.Model):
     __tablename__ = 'schedule_days'
     id = db.Column(db.Integer, primary_key=True)
@@ -50,6 +54,7 @@ class ScheduleDay(db.Model):
 
     def __repr__(self):
         return '<Schedule Day %r>' % self.name
+
 
 class Period(db.Model):
     __tablename__ = 'periods'
@@ -68,6 +73,7 @@ class Period(db.Model):
     def end_time_as_str(self):
         return self.end_time.strftime('%I:%M %p')
 
+
 class Section(db.Model):
     __tablename__ = 'sections'
     id = db.Column(db.Integer, primary_key=True)
@@ -82,12 +88,38 @@ class Section(db.Model):
     def __repr__(self):
         return '<Section %r>' % self.name
 
+
 class Schedule(db.Model):
     __tablename__ = 'schedules'
-    student_id = db.Column(db.Integer, db.ForeignKey('students.id'), primary_key=True)
-    section_id = db.Column(db.Integer, db.ForeignKey('sections.id'), primary_key=True)
-    schedule_day_id = db.Column(db.Integer, db.ForeignKey('schedule_days.id'), primary_key=True, index=True)
+    student_id = db.Column(
+        db.Integer, db.ForeignKey('students.id'), primary_key=True)
+    section_id = db.Column(
+        db.Integer, db.ForeignKey('sections.id'), primary_key=True)
+    schedule_day_id = db.Column(
+        db.Integer, db.ForeignKey('schedule_days.id'), primary_key=True, index=True)
     student = db.relationship("Student", backref="schedule")
     section = db.relationship("Section", backref="schedule")
     schedule_day = db.relationship("ScheduleDay", backref="schedule")
-    period = db.relationship("Period", secondary='sections')
+
+    def store_schedule(self, student, section, schedule_day):
+        cur_sch = Schedule().schedule_by_student_period_day(student=student,
+                                                            period=section.period,
+                                                            schedule_day=schedule_day)
+        if cur_sch is not None and cur_sch.section != section:
+            db.session.delete(cur_sch)
+
+        schedule = None
+        
+        if cur_sch is None or cur_sch.section != section:
+            schedule = Schedule(
+                student=student, section=section, schedule_day=schedule_day)
+            db.session.add(schedule)
+
+        db.session.commit()
+        return schedule
+
+    def schedule_by_student_period_day(self, student, period, schedule_day):
+        sections_with_period = [
+            s.id for s in Section.query.filter_by(period=period).all()]
+        return Schedule.query.filter(Schedule.section_id.in_(sections_with_period)).filter_by(
+            schedule_day=schedule_day, student=student).first()
