@@ -1,9 +1,9 @@
 from flask.ext.wtf import Form
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
-    SubmitField, IntegerField
+    SubmitField, IntegerField, HiddenField
 from wtforms_components import TimeField
 from wtforms.validators import Required
-from app.models import Grade, Subject, Period, Teacher
+from app.models import Grade, Subject, Period, Teacher, Section
 
 
 class StudentForm(Form):
@@ -56,3 +56,13 @@ class SectionForm(Form):
         self.subject.choices = [(x.id, x.name) for x in Subject.query.all()]
         self.teacher.choices = [(x.id, x.name) for x in Teacher.query.all()]
         self.period.choices = [(x.id, x.number) for x in Period.query.all()]
+
+class ScheduleForm(Form):
+    student = HiddenField()
+    schedule_day = HiddenField()
+    section = SelectField("Section", validators=[Required()])
+
+    def __init__(self, student, *args, **kwargs):
+        super(ScheduleForm, self).__init__(*args, **kwargs)
+        self.section.choices = [(x.id, x.name) for x in Section.query.all()]
+        student.data = student.id

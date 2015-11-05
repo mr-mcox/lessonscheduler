@@ -48,9 +48,12 @@ def test_schedule(client, app, db):
     assert Schedule.query.filter(Schedule.section_id.in_(sections_with_period)).filter_by(
         schedule_day=schedule_day1, student=student).first() == schedule1
 
-    # resp = client.post(url_for('main.new_schedule'),
-    #                    data={'student': student.id,
-    #                          'section': section1.id,
-    #                          'schedule_day': schedule_day1,
-    #                          },
-    #                    follow_redirects=False)
+    resp = client.post(url_for('main.edit_schedule', student_id=student.id),
+                       data={'student': student.id,
+                             'section': section1.id,
+                             'schedule_day': schedule_day1,
+                             },
+                       follow_redirects=False)
+
+    resp = client.get(url_for('main.edit_schedule', student_id=student.id))
+    assert b'1:section' in resp.data
