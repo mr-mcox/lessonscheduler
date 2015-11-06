@@ -14,8 +14,8 @@ S5:
  ✔ Save entries (use test) @done (15-11-05 12:59)
  ✔ Editing schedule results in old class assigned for student, period, schedule day being removed from association @done (15-11-05 16:48)
  ✔ Don't add a new schedule if it matches @done (15-11-05 16:52)
- ☐ Editing schedule defaults to current data
- ☐ View student schedule
+ ✔ Editing schedule defaults to current data @done (15-11-05 17:05)
+ ✔ View student schedule @done (15-11-05 18:06)
  ☐ There are lesson days
  ☐ Students have lesson days
  ☐ Most mmodels output in alphebetical order
