@@ -16,10 +16,11 @@ S5:
  ✔ Don't add a new schedule if it matches @done (15-11-05 16:52)
  ✔ Editing schedule defaults to current data @done (15-11-05 17:05)
  ✔ View student schedule @done (15-11-05 18:06)
- ☐ There are lesson days
- ☐ Students have lesson days
+ ✔ There are lesson days @done (15-11-05 18:39)
+ ✔ Students have lesson days @done (15-11-05 18:39)
  ☐ Most mmodels output in alphebetical order
  ☐ Sections output in order of Grade, Schedule Day, Period, Teacher
+ ☐ Students output in order of Grade, Name
  ☐ You can select CM by lesson day
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿

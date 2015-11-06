@@ -4,17 +4,19 @@ from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
     SubmitField, IntegerField, HiddenField, FieldList, FormField
 from wtforms_components import TimeField
 from wtforms.validators import Required
-from app.models import Grade, Subject, Period, Teacher, Section
+from app.models import Grade, Subject, Period, Teacher, Section, LessonDay
 
 
 class StudentForm(Form):
     name = StringField('Name', validators=[Required()])
     grade = SelectField('Grade', coerce=int)
+    lesson_day = SelectField('Lesson Day', coerce=int)
     submit = SubmitField('Add/Modify')
 
     def __init__(self, *args, **kwargs):
         super(StudentForm, self).__init__(*args, **kwargs)
         self.grade.choices = [(g.id, g.grade) for g in Grade.query.all()]
+        self.lesson_day.choices = [(g.id, g.name) for g in LessonDay.query.all()]
 
 
 class GradeForm(Form):
@@ -34,6 +36,10 @@ class TeacherForm(Form):
 
 class ScheduleDayForm(Form):
     name = StringField('Schedule Day', validators=[Required()])
+    submit = SubmitField('Add/Modify')
+
+class LessonDayForm(Form):
+    name = StringField('LessonDay', validators=[Required()])
     submit = SubmitField('Add/Modify')
 
 

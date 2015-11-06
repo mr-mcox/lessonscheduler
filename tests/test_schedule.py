@@ -142,6 +142,7 @@ def test_edit_removes_old_schedule_at_same_time(section1, section1B, student, sc
                               schedule_day=schedule_day1)
     assert len(Schedule.query.all()) == 1
 
+
 def test_do_not_store_duplicates(section1, student, schedule_day1):
     Schedule().store_schedule(student=student,
                               section=section1,

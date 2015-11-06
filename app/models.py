@@ -7,6 +7,7 @@ class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), unique=True)
     grade_id = db.Column(db.Integer, db.ForeignKey('grades.id'))
+    lesson_day_id = db.Column(db.Integer, db.ForeignKey('lesson_days.id'))
     sections = association_proxy('schedules', 'sections')
 
     def __repr__(self):
@@ -14,6 +15,9 @@ class Student(db.Model):
 
     def has_grade(self):
         return self.grade is not None
+
+    def has_lesson_day(self):
+        return self.lesson_day is not None
 
 
 class Grade(db.Model):
@@ -123,3 +127,12 @@ class Schedule(db.Model):
             s.id for s in Section.query.filter_by(period=period).all()]
         return Schedule.query.filter(Schedule.section_id.in_(sections_with_period)).filter_by(
             schedule_day=schedule_day, student=student).first()
+
+class LessonDay(db.Model):
+    __tablename__ = 'lesson_days'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), unique=True)
+    students = db.relationship('Student', backref='lesson_day')
+
+    def __repr__(self):
+        return '<LessonDay %r>' % self.name
