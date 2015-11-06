@@ -28,7 +28,8 @@ def test_create_new_student(client, app, grade, lesson_day):
                        follow_redirects=False)
 
     with app.app_context():
-        assert resp.location == url_for('main.students', _external=True)
+        s_record = Student.query.filter_by(name=s_name).first()
+        assert resp.location == url_for('.edit_schedule', student_id=s_record.id, _external=True)
 
     # Test Elliot in all students
     resp = client.get(url_for('main.students'))

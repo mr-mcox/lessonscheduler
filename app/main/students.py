@@ -15,19 +15,22 @@ def new_student():
         student.lesson_day = LessonDay.query.get(form.lesson_day.data)
         db.session.add(student)
         db.session.commit()
-        return redirect(url_for('.students'))
+        return redirect(url_for('.edit_schedule', student_id=student.id))
     return render_template('student_form.html', form=form)
 
 
 @main.route('/students/')
 def students():
-    students = Student.query.join(Grade).order_by(Grade.grade, Student.name).all()
+    students = Student.query.join(Grade).join(LessonDay).order_by(
+        Grade.grade, LessonDay.name, Student.name).all()
     return render_template('all_students.html', students=students)
+
 
 @main.route('/students/lesson_day/<int:lesson_day_id>')
 def students_for_lesson_day(lesson_day_id):
     lesson_day = LessonDay.query.get_or_404(lesson_day_id)
-    students = Student.query.filter_by(lesson_day=lesson_day).join(Grade).order_by(Grade.grade, Student.name).all()
+    students = Student.query.filter_by(lesson_day=lesson_day).join(
+        Grade).order_by(Grade.grade, Student.name).all()
     return render_template('all_students.html', students=students)
 
 
