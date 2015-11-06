@@ -21,7 +21,13 @@ def new_student():
 
 @main.route('/students/')
 def students():
-    students = Student.query.all()
+    students = Student.query.join(Grade).order_by(Grade.grade, Student.name).all()
+    return render_template('all_students.html', students=students)
+
+@main.route('/students/lesson_day/<int:lesson_day_id>')
+def students_for_lesson_day(lesson_day_id):
+    lesson_day = LessonDay.query.get_or_404(lesson_day_id)
+    students = Student.query.filter_by(lesson_day=lesson_day).join(Grade).order_by(Grade.grade, Student.name).all()
     return render_template('all_students.html', students=students)
 
 

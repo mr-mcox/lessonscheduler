@@ -18,10 +18,11 @@ S5:
  ✔ View student schedule @done (15-11-05 18:06)
  ✔ There are lesson days @done (15-11-05 18:39)
  ✔ Students have lesson days @done (15-11-05 18:39)
- ☐ Most mmodels output in alphebetical order
- ☐ Sections output in order of Grade, Schedule Day, Period, Teacher
- ☐ Students output in order of Grade, Name
- ☐ You can select CM by lesson day
+ ✔ Most mmodels output in alphebetical order @done (15-11-05 18:50)
+ ✔ Sections output in order of Grade, Schedule Day, Period, Teacher @done (15-11-05 19:18)
+ ✔ Students output in order of Grade, Name @done (15-11-05 19:19)
+ ✔ Order menu in schedule by name @done (15-11-05 19:21)
+ ✔ You can select CM by lesson day @done (15-11-05 19:54)
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

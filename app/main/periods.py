@@ -3,7 +3,6 @@ from . import main
 from flask import render_template, url_for, flash, redirect
 from .. import db
 from .forms import PeriodForm
-import pdb
 
 @main.route('/period/', methods=['GET', 'POST'])
 def new_period():
@@ -21,7 +20,7 @@ def new_period():
 
 @main.route('/periods/')
 def periods():
-    periods = Period.query.all()
+    periods = Period.query.order_by('number').all()
     return render_template('all_periods.html', periods=periods)
 
 

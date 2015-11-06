@@ -19,7 +19,7 @@ def new_schedule_day():
 
 @main.route('/schedule_days/')
 def schedule_days():
-    schedule_days = ScheduleDay.query.all()
+    schedule_days = ScheduleDay.query.order_by('name').all()
     return render_template('all_schedule_days.html', schedule_days=schedule_days)
 
 

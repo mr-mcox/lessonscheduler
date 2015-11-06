@@ -4,7 +4,6 @@ from flask import render_template, url_for, flash, redirect
 from .. import db
 from .forms import LessonDayForm
 
-
 @main.route('/lesson_day/', methods=['GET', 'POST'])
 def new_lesson_day():
     form = LessonDayForm()
@@ -19,7 +18,7 @@ def new_lesson_day():
 
 @main.route('/lesson_days/')
 def lesson_days():
-    lesson_days = LessonDay.query.all()
+    lesson_days = LessonDay.query.order_by('name').all()
     return render_template('all_lesson_days.html', lesson_days=lesson_days)
 
 
