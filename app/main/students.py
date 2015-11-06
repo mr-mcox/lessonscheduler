@@ -1,4 +1,4 @@
-from ..models import Student, Grade
+from ..models import Student, Grade, LessonDay
 from . import main
 from flask import render_template, url_for, flash, redirect
 from .. import db
@@ -12,6 +12,7 @@ def new_student():
         student = Student()
         student.name = form.name.data
         student.grade = Grade.query.get(form.grade.data)
+        student.lesson_day = LessonDay.query.get(form.lesson_day.data)
         db.session.add(student)
         db.session.commit()
         return redirect(url_for('.students'))
@@ -20,7 +21,13 @@ def new_student():
 
 @main.route('/students/')
 def students():
-    students = Student.query.all()
+    students = Student.query.join(Grade).order_by(Grade.grade, Student.name).all()
+    return render_template('all_students.html', students=students)
+
+@main.route('/students/lesson_day/<int:lesson_day_id>')
+def students_for_lesson_day(lesson_day_id):
+    lesson_day = LessonDay.query.get_or_404(lesson_day_id)
+    students = Student.query.filter_by(lesson_day=lesson_day).join(Grade).order_by(Grade.grade, Student.name).all()
     return render_template('all_students.html', students=students)
 
 
@@ -31,6 +38,7 @@ def edit_student(id):
     if form.validate_on_submit():
         student.name = form.name.data
         student.grade = Grade.query.get(form.grade.data)
+        student.lesson_day = LessonDay.query.get(form.lesson_day.data)
         db.session.add(student)
         db.session.commit()
         flash('The student has been updated.')

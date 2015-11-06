@@ -19,7 +19,7 @@ def new_subject():
 
 @main.route('/subjects/')
 def subjects():
-    subjects = Subject.query.all()
+    subjects = Subject.query.order_by('name').all()
     return render_template('all_subjects.html', subjects=subjects)
 
 

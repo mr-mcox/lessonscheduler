@@ -19,7 +19,7 @@ def new_teacher():
 
 @main.route('/teachers/')
 def teachers():
-    teachers = Teacher.query.all()
+    teachers = Teacher.query.order_by('name').all()
     return render_template('all_teachers.html', teachers=teachers)
 
 

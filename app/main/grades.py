@@ -18,7 +18,7 @@ def new_grade():
 
 @main.route('/grades/')
 def grades():
-    grades = Grade.query.all()
+    grades = Grade.query.order_by('grade').all()
     return render_template('all_grades.html', grades=grades)
 
 

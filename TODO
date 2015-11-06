@@ -8,12 +8,21 @@ S5:
  ✔ Create class by assigning teacher, period, subject, grade and adding room/notes @done (15-11-03 20:17)
  ✔ Get schema working so that one can create a schedule that associates student and class and schedule day @done (15-11-04 18:13)
  ✔ Verify that one can query to identify class for given student, period and schedule day @done (15-11-04 19:11)
- ☐ Filter classes by grade, period and schedule day on student form
- ☐ Set up form so that entries are laid out in table format
- ☐ Each column on table contains classes for one schedule day
- ☐ Each row on table contains classes for just one period
- ☐ Editing schedule results in old class assigned for student, period, schedule day being removed from association
- ☐ View student schedule
+ ✔ Clean up the dang code so that it only does what it needs to in order to create a row per period @done (15-11-05 06:37)
+ ✔ Create a form for each schedule day @done (15-11-05 07:22)
+ ✔ Setting default values in selection form @done (15-11-05 11:14)
+ ✔ Save entries (use test) @done (15-11-05 12:59)
+ ✔ Editing schedule results in old class assigned for student, period, schedule day being removed from association @done (15-11-05 16:48)
+ ✔ Don't add a new schedule if it matches @done (15-11-05 16:52)
+ ✔ Editing schedule defaults to current data @done (15-11-05 17:05)
+ ✔ View student schedule @done (15-11-05 18:06)
+ ✔ There are lesson days @done (15-11-05 18:39)
+ ✔ Students have lesson days @done (15-11-05 18:39)
+ ✔ Most mmodels output in alphebetical order @done (15-11-05 18:50)
+ ✔ Sections output in order of Grade, Schedule Day, Period, Teacher @done (15-11-05 19:18)
+ ✔ Students output in order of Grade, Name @done (15-11-05 19:19)
+ ✔ Order menu in schedule by name @done (15-11-05 19:21)
+ ✔ You can select CM by lesson day @done (15-11-05 19:54)
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:

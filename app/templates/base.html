@@ -4,6 +4,7 @@
 
 {% block head %}
 {{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 {% endblock %}
 
 {% block navbar %}
@@ -23,7 +24,16 @@
                 <li><a href="{{ url_for('main.index') }}">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ url_for('main.students') }}">Students</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Students</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('main.students') }}">All Students</a></li>
+                        {% for lesson_day in all_lesson_days %}
+                        <li><a href="{{ url_for('main.students_for_lesson_day', lesson_day_id=lesson_day.id) }}">{{ "Lesson Day " + lesson_day.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                
                 <li class="dropdown">
                 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Setup</a>
                 	<ul class="dropdown-menu">
@@ -33,6 +43,7 @@
                         <li><a href="{{ url_for('main.schedule_days') }}">Schedule Days</a></li>
                         <li><a href="{{ url_for('main.periods') }}">Periods</a></li>
                         <li><a href="{{ url_for('main.sections') }}">Sections</a></li>
+                        <li><a href="{{ url_for('main.lesson_days') }}">Lesson Days</a></li>
                     </ul>
                 </li>
             </ul>
@@ -49,7 +60,6 @@
         {{ message }}
     </div>
     {% endfor %}
-
     {% block page_content %}{% endblock %}
 </div>
 {% endblock %}
