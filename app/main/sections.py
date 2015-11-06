@@ -25,7 +25,7 @@ def new_section():
 @main.route('/sections/')
 def sections():
     sections = db.session.query(Section).join(Teacher).join(Period).join(
-        Grade).order_by(Grade.grade, Period.number, Teacher.name, Section.name).all()
+        Grade).order_by(Grade.grade, Teacher.name, Period.number, Section.name).all()
     return render_template('all_sections.html', sections=sections)
 
 

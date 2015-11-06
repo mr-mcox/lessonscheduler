@@ -29,7 +29,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ url_for('main.students') }}">All Students</a></li>
                         {% for lesson_day in all_lesson_days %}
-                        <li><a href="{{ url_for('main.students_for_lesson_day', lesson_day_id=lesson_day.id) }}">{{ "Lesson Day " + lesson_day.name }}</a></li>
+                        <li><a href="{{ url_for('main.students_for_lesson_day', lesson_day_id=lesson_day.id) }}">{{ lesson_day.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
