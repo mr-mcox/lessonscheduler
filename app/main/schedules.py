@@ -12,6 +12,7 @@ def edit_schedule(student_id):
     student = Student.query.get_or_404(student_id)
     period_list = list()
     schedule_day_list = ScheduleDay.query.all()
+    grade = student.grade
 
     period_group = SchedulePeriodGroup()
 
@@ -23,7 +24,7 @@ def edit_schedule(student_id):
     for period in Period.query.all():
 
         cur_period_list = [(x.id, x.name)
-                           for x in Section.query.filter_by(period=period).order_by('name').all()]
+                           for x in Section.query.filter_by(period=period, grade=grade).order_by('name').all()]
         period_list.append((period, cur_period_list))
 
         form.periods.append_entry(period_group)
