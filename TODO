@@ -1,31 +1,41 @@
-S5:
- ✔ Create grades @done (15-11-01 15:57)
- ✔ Assign student grade @done (15-11-01 17:15)
- ✔ Create and edit subjects @done (15-11-02 19:35)
- ✔ Create and edit teachers @done (15-11-02 19:42)
- ✔ Create and edit schedule days (A/B) @done (15-11-02 19:51)
- ✔ Create and edit period number, start and end time @done (15-11-03 20:17)
- ✔ Create class by assigning teacher, period, subject, grade and adding room/notes @done (15-11-03 20:17)
- ✔ Get schema working so that one can create a schedule that associates student and class and schedule day @done (15-11-04 18:13)
- ✔ Verify that one can query to identify class for given student, period and schedule day @done (15-11-04 19:11)
- ✔ Clean up the dang code so that it only does what it needs to in order to create a row per period @done (15-11-05 06:37)
- ✔ Create a form for each schedule day @done (15-11-05 07:22)
- ✔ Setting default values in selection form @done (15-11-05 11:14)
- ✔ Save entries (use test) @done (15-11-05 12:59)
- ✔ Editing schedule results in old class assigned for student, period, schedule day being removed from association @done (15-11-05 16:48)
- ✔ Don't add a new schedule if it matches @done (15-11-05 16:52)
- ✔ Editing schedule defaults to current data @done (15-11-05 17:05)
- ✔ View student schedule @done (15-11-05 18:06)
- ✔ There are lesson days @done (15-11-05 18:39)
- ✔ Students have lesson days @done (15-11-05 18:39)
- ✔ Most mmodels output in alphebetical order @done (15-11-05 18:50)
- ✔ Sections output in order of Grade, Schedule Day, Period, Teacher @done (15-11-05 19:18)
- ✔ Students output in order of Grade, Name @done (15-11-05 19:19)
- ✔ Order menu in schedule by name @done (15-11-05 19:21)
- ✔ You can select CM by lesson day @done (15-11-05 19:54)
-
+Features 8-10:
+ ✔ Setup current day given model as stands @done (15-11-08 18:51)
+ ☐ Setup day removes previous record
+ ☐ Add students from given lesson day to schedule
+ ☐ Setup day includes setting up students if box checked
+ ☐ Schedule view shows schedule for current lesson day
+ ☐ View for students on current sheet
+ ☐ CRUD for lesson outcomes
+ ☐ CRUD for scheduled lesson
+ ☐ Enter outcome for students on current sheet
+ ☐ current sheet includes incomplete scheduled lessons from prior days
+ ☐ Schedule view shows last complete lesson for section
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ You can select CM by lesson day @done (15-11-05 19:54) @project(S5)
+ ✔ Order menu in schedule by name @done (15-11-05 19:21) @project(S5)
+ ✔ Students output in order of Grade, Name @done (15-11-05 19:19) @project(S5)
+ ✔ Sections output in order of Grade, Schedule Day, Period, Teacher @done (15-11-05 19:18) @project(S5)
+ ✔ Most mmodels output in alphebetical order @done (15-11-05 18:50) @project(S5)
+ ✔ There are lesson days @done (15-11-05 18:39) @project(S5)
+ ✔ Students have lesson days @done (15-11-05 18:39) @project(S5)
+ ✔ View student schedule @done (15-11-05 18:06) @project(S5)
+ ✔ Editing schedule defaults to current data @done (15-11-05 17:05) @project(S5)
+ ✔ Don't add a new schedule if it matches @done (15-11-05 16:52) @project(S5)
+ ✔ Editing schedule results in old class assigned for student, period, schedule day being removed from association @done (15-11-05 16:48) @project(S5)
+ ✔ Save entries (use test) @done (15-11-05 12:59) @project(S5)
+ ✔ Setting default values in selection form @done (15-11-05 11:14) @project(S5)
+ ✔ Create a form for each schedule day @done (15-11-05 07:22) @project(S5)
+ ✔ Clean up the dang code so that it only does what it needs to in order to create a row per period @done (15-11-05 06:37) @project(S5)
+ ✔ Verify that one can query to identify class for given student, period and schedule day @done (15-11-04 19:11) @project(S5)
+ ✔ Get schema working so that one can create a schedule that associates student and class and schedule day @done (15-11-04 18:13) @project(S5)
+ ✔ Create class by assigning teacher, period, subject, grade and adding room/notes @done (15-11-03 20:17) @project(S5)
+ ✔ Create and edit period number, start and end time @done (15-11-03 20:17) @project(S5)
+ ✔ Create and edit schedule days (A/B) @done (15-11-02 19:51) @project(S5)
+ ✔ Create and edit teachers @done (15-11-02 19:42) @project(S5)
+ ✔ Create and edit subjects @done (15-11-02 19:35) @project(S5)
+ ✔ Assign student grade @done (15-11-01 17:15) @project(S5)
+ ✔ Create grades @done (15-11-01 15:57) @project(S5)
  ✔ Deploy to heroku @done (15-10-31 20:08) @project(v0.1)
  ✔ Edit student form prefills with student name @done (15-10-31 18:12) @project(v0.1)
  ✔ Create navigation bar @done (15-10-31 18:06) @project(v0.1)
