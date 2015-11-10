@@ -13,7 +13,11 @@
     </div>
     {% for period_group in all_sections %}
     <div class="row">
-        <div class="col-md-2"><h4>{{ period_group[0].period.number }}</h4></div>
+        <div class="col-md-2">
+        <h4>{{ period_group[0].period.number }}</h4>
+        <p>{{ period_group[0].period.start_time_as_str() }}</p>
+        <p>{{ period_group[0].period.end_time_as_str() }}</p>
+        </div>
         {% for section in period_group %}
             <div class="col-md-2">
                 <p>{{ section.teacher.name }}</p>
