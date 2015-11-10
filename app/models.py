@@ -77,6 +77,9 @@ class Period(db.Model):
     def end_time_as_str(self):
         return self.end_time.strftime('%I:%M %p')
 
+    def period_span(self):
+        return self.start_time.strftime('%I:%M') + "-" + self.end_time.strftime('%I:%M')
+
 
 class Section(db.Model):
     __tablename__ = 'sections'
@@ -113,7 +116,7 @@ class Schedule(db.Model):
             db.session.delete(cur_sch)
 
         schedule = None
-        
+
         if cur_sch is None or cur_sch.section != section:
             schedule = Schedule(
                 student=student, section=section, schedule_day=schedule_day)
@@ -127,6 +130,7 @@ class Schedule(db.Model):
             s.id for s in Section.query.filter_by(period=period).all()]
         return Schedule.query.filter(Schedule.section_id.in_(sections_with_period)).filter_by(
             schedule_day=schedule_day, student=student).first()
+
 
 class LessonDay(db.Model):
     __tablename__ = 'lesson_days'
