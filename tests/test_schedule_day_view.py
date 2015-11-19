@@ -1,10 +1,10 @@
 from flask import url_for
 import pytest
-import urllib
 from selenium import webdriver
 
 
 @pytest.mark.usefixtures('live_server')
+@pytest.mark.selenium
 class TestLiveServer:
 
     browser = None
