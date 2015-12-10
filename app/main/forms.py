@@ -2,7 +2,7 @@ from flask.ext.wtf import Form
 from wtforms import Form as NoCsrfForm
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
     SubmitField, IntegerField, HiddenField, FieldList, FormField, DateField
-from wtforms_components import TimeField
+from wtforms_components import TimeField, DateTimeField
 from wtforms.validators import Required
 from app.models import Grade, Subject, Period, Teacher, Section, LessonDay, ScheduleDay
 
@@ -89,7 +89,7 @@ class ScheduleForm(Form):
 
 
 class CurrentDayForm(Form):
-    date = DateField('Today', validators=[Required()])
+    date = DateTimeField('Today', validators=[Required()])
     schedule_day = SelectField('Schedule Day', coerce=int)
     lesson_day = SelectField('Cycle Day', coerce=int)
     submit = SubmitField('Setup')

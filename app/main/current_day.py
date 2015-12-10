@@ -15,4 +15,4 @@ def setup_current_day():
         db.session.add(today)
         db.session.commit()
         return redirect(url_for('.students'))
-    return render_template('current_day.html', form=form)
+    return render_template('current_day_form.html', form=form)
