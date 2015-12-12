@@ -1,7 +1,7 @@
 Features 8-10:
  ✔ Setup current day given model as stands @done (15-11-08 18:51)
- ☐ Setup day removes previous record
  ☐ Schedule view shows schedule for current schedule day
+ ☐ When setup current day is run twice, only one record is present
  ☐ Add students from given lesson day to schedule
  ☐ Setup day includes setting up students if box checked
  ☐ Schedule view shows schedule for current lesson day

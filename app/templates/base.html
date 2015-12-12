@@ -25,7 +25,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Students</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="Student menu">Students</a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url_for('main.students') }}">All Students</a></li>
                         {% for lesson_day in all_lesson_days %}
@@ -35,9 +35,9 @@
                 </li>
                 
                 <li class="dropdown">
-                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" name="Setup Button">Setup</a>
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Setup</a>
                 	<ul class="dropdown-menu">
-                        <li><a href="{{ url_for('main.setup_current_day') }}" name="Setup Today">Setup Today</a></li>
+                        <li><a href="{{ url_for('main.setup_current_day') }}">Setup Today</a></li>
                         <li><a href="{{ url_for('main.grades') }}">Grades</a></li>
                         <li><a href="{{ url_for('main.subjects') }}">Subjects</a></li>
                         <li><a href="{{ url_for('main.teachers') }}">Teachers</a></li>
