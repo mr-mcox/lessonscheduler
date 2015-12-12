@@ -9,7 +9,6 @@ def setup_current_day():
     form = CurrentDayForm()
     if form.validate_on_submit():
         today = CurrentDay()
-        today.date = form.date.data
         today.schedule_day = ScheduleDay.query.get_or_404(form.schedule_day.data)
         today.lesson_day = LessonDay.query.get_or_404(form.lesson_day.data)
         db.session.add(today)

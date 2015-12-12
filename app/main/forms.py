@@ -89,7 +89,6 @@ class ScheduleForm(Form):
 
 
 class CurrentDayForm(Form):
-    date = DateTimeField('Today', validators=[Required()])
     schedule_day = SelectField('Schedule Day', coerce=int)
     lesson_day = SelectField('Cycle Day', coerce=int)
     submit = SubmitField('Setup')
