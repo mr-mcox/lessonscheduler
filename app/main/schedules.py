@@ -1,4 +1,4 @@
-from ..models import Schedule, Student, Period, Section, ScheduleDay
+from ..models import Schedule, Student, Period, Section, ScheduleDay, CurrentDay
 from . import main
 from flask import render_template, url_for, flash, redirect
 from .. import db
@@ -76,20 +76,19 @@ def edit_schedule_post(student_id):
 def view_schedule(student_id):
     periods = Period.query.all()
     student = Student.query.get_or_404(student_id)
-    schedule_days = ScheduleDay.query.all()
+    schedule_day = CurrentDay().query.first().schedule_day
 
     all_sections = list()
 
     for period in periods:
         period_group = list()
-        for schedule_day in schedule_days:
 
-            sch = Schedule().schedule_by_student_period_day(student=student,
-                                                            period=period,
-                                                            schedule_day=schedule_day)
-            period_group.append(sch.section)
+        sch = Schedule().schedule_by_student_period_day(student=student,
+                                                        period=period,
+                                                        schedule_day=schedule_day)
+        period_group.append(sch.section)
 
         all_sections.append(period_group)
 
     return render_template('student_schedule.html', student=student,
-                           schedule_days=schedule_days, all_sections=all_sections)
+                           all_sections=all_sections)
