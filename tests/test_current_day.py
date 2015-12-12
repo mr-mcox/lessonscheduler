@@ -10,6 +10,13 @@ def schedule_day1(db):
     return schedule_day1
 
 @pytest.fixture
+def schedule_day2(db):
+    schedule_day2 = ScheduleDay(name='B')
+    db.session.add(schedule_day2)
+    db.session.commit()
+    return schedule_day2
+
+@pytest.fixture
 def lesson_day1(db):
     lesson_day1 = LessonDay(name='A')
     db.session.add(lesson_day1)
@@ -24,3 +31,17 @@ def test_current_day_setup(schedule_day1, lesson_day1, client):
     obj = CurrentDay.query.first()
     assert obj.lesson_day == lesson_day1
     assert obj.schedule_day == schedule_day1
+
+def test_successive_day_setup(schedule_day1, schedule_day2, lesson_day1, client):
+    resp = client.post(url_for('main.setup_current_day'),
+                       data={'lesson_day': lesson_day1.id, 'schedule_day': schedule_day1.id},
+                       follow_redirects=False)
+
+    obj = CurrentDay.query.first()
+    assert obj.schedule_day == schedule_day1
+
+    resp = client.post(url_for('main.setup_current_day'),
+                       data={'lesson_day': lesson_day1.id, 'schedule_day': schedule_day2.id},
+                       follow_redirects=False)
+    obj = CurrentDay.query.first()
+    assert obj.schedule_day == schedule_day2
