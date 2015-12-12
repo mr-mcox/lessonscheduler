@@ -141,9 +141,20 @@ class TestLiveServer:
         assert "Mrs. Cox"  in browser.page_source
         assert "Mr. Pryor" not in browser.page_source
         # Emily clicks on setup menu
+        browser.find_element_by_link_text("Setup").click()
         # Emily clicks on setup day
+        browser.find_element_by_link_text("Setup Today").click()
         # Emily chooses schedule day B
+        day_menu = Select(browser.find_element_by_name("schedule_day"))
+        day_menu.select_by_visible_text("B")
         # Emily clicks the setup button
+        browser.find_element_by_name("submit").click()
         # Emily clicks on students
-        # Emily selects lesson day 1
-        # The only classes shown are for schedule day B
+        browser.find_element_by_name("Student menu").click()
+        # Emily selects all students
+        browser.find_element_by_link_text("All Students").click()
+        #Emily clicks into Elliot
+        browser.find_element_by_link_text("Elliot").click()
+        # The only classes shown are for schedule day A
+        assert "Mrs. Cox"  not in browser.page_source
+        assert "Mr. Pryor" in browser.page_source
