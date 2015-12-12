@@ -140,3 +140,16 @@ class LessonDay(db.Model):
 
     def __repr__(self):
         return '<LessonDay %r>' % self.name
+
+
+class CurrentDay(db.Model):
+    __tablename__ = 'current_day'
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date)
+    schedule_day_id = db.Column(db.Integer, db.ForeignKey('schedule_days.id'))
+    schedule_day = db.relationship('ScheduleDay')
+    lessod_day_id = db.Column(db.Integer, db.ForeignKey('lesson_days.id'))
+    lesson_day = db.relationship('LessonDay')
+
+    def __repr__(self):
+        return '<Current Day %r>' % self.date

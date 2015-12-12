@@ -17,7 +17,23 @@
 			{
 				"PYTHONPATH": "/Users/mcox/Code/Python"
 			},
-			"name": "Run Tests",
+			"name": "Full tests",
+			"path": "/usr/local/bin/",
+			"working_dir": "${project_path}"
+		},
+		{
+			"cmd":
+			[
+				"venv/bin/py.test",
+				"tests/",
+				"-m",
+				"not selenium",
+			],
+			"env":
+			{
+				"PYTHONPATH": "/Users/mcox/Code/Python"
+			},
+			"name": "Unit Tests",
 			"path": "/usr/local/bin/",
 			"working_dir": "${project_path}"
 		}

@@ -1,10 +1,10 @@
 from flask.ext.wtf import Form
 from wtforms import Form as NoCsrfForm
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
-    SubmitField, IntegerField, HiddenField, FieldList, FormField
-from wtforms_components import TimeField
+    SubmitField, IntegerField, HiddenField, FieldList, FormField, DateField
+from wtforms_components import TimeField, DateTimeField
 from wtforms.validators import Required
-from app.models import Grade, Subject, Period, Teacher, Section, LessonDay
+from app.models import Grade, Subject, Period, Teacher, Section, LessonDay, ScheduleDay
 
 
 class StudentForm(Form):
@@ -86,3 +86,15 @@ class SchedulePeriodGroup(NoCsrfForm):
 
 class ScheduleForm(Form):
     periods = FieldList(FormField(SchedulePeriodGroup))
+
+
+class CurrentDayForm(Form):
+    schedule_day = SelectField('Schedule Day', coerce=int)
+    lesson_day = SelectField('Cycle Day', coerce=int)
+    submit = SubmitField('Setup')
+
+    def __init__(self, *args, **kwargs):
+        super(CurrentDayForm, self).__init__(*args, **kwargs)
+        self.schedule_day.choices = [ (s.id, s.name) for s in ScheduleDay.query.all()]
+        self.lesson_day.choices = [ (s.id, s.name) for s in LessonDay.query.all()]
+
